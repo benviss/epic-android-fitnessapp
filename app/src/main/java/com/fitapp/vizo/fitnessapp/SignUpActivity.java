@@ -17,9 +17,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Bind(R.id.newUserUsername) EditText newUserUsernameField;
     @Bind(R.id.newUserPassword) EditText newUserPasswordField;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +25,15 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+
+//Creates new User and loges user contact info
     public void onClickSubmitUserContact(View v) {
-        String newUserFirstNameInput = newUserFirstNameField.getText().toString();
+        String newUserFirstNameInput  = newUserFirstNameField.getText().toString();
         String newUserLastNameInput = newUserLastNameField.getText().toString();
         String newUserUsernameInput = newUserUsernameField.getText().toString();
         String newUserPasswordInput = newUserPasswordField.getText().toString();
-        Log.d("test",newUserFirstNameInput);
-        Log.d("test",newUserLastNameInput);
-        Log.d("test",newUserUsernameInput);
-        Log.d("test",newUserPasswordInput);
-        Toast.makeText(SignUpActivity.this, "Hmmmm", Toast.LENGTH_SHORT).show();
+
+        User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput);
     }
 
 

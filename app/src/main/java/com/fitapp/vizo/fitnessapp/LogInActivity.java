@@ -28,7 +28,4 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(signUpIntent);
     }
 
-    public void onClickUserLogin(View v) {
-
-    }
 }
