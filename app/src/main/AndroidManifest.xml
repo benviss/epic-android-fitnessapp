@@ -10,16 +10,20 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/NoActionBarTheme">
+        </activity>
+        <activity
+            android:name=".LogUserWorkout"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".LogInActivity"
+            android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LogUserWorkout"
-            android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".LogInActivity" />
+
         <activity android:name=".SignUpActivity"></activity>
     </application>
 
