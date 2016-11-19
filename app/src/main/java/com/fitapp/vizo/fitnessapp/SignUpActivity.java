@@ -2,6 +2,7 @@ package com.fitapp.vizo.fitnessapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Bind(R.id.userWeightInput) EditText newUserWeightField;
     @Bind(R.id.userHeightInput) EditText newUserHeightField;
     @Bind(R.id.userBirthInput) EditText newUserBirthDateField;
-    @Bind(R.id.userTargetWeight) EditText newUserTargetWeight;
+    @Bind(R.id.userTargetWeight) EditText newUserTargetWeightField;
 
 
 
@@ -49,12 +50,21 @@ public class SignUpActivity extends AppCompatActivity {
         int newUserWeight  = Integer.parseInt(newUserWeightField.getText().toString());
         String newUserHeight = newUserHeightField.getText().toString();
         String newUserBirthDate = newUserBirthDateField.getText().toString();
-        String newUserGoal = newUserUsernameField.getText().toString();
-//        int newUserWeightGoal = Integer.parseInt(newUserPasswordField.getText().toString());
+        int newUserTargetWeight = Integer.parseInt(newUserTargetWeightField.getText().toString());
 
 
 
-//        User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput);
+        User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
+        Log.d("test",newUser.getFirstName());
+        Log.d("test",newUser.getLastName());
+        Log.d("test",newUser.getUsername());
+        Log.d("test",newUser.getPassword());
+        Log.d("test",newUser.getHeight());
+        Log.d("test",Integer.toString(newUser.getWeight()));
+        Log.d("test",newUser.getGender());
+        Log.d("test",newUser.getBirthdate());
+        Log.d("test",newUser.getGoal());
+        Log.d("test",Integer.toString(newUser.getTargetWeight()));
     }
 
     public void onClickContinue(View v) {
@@ -85,10 +95,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onClickUserGoal(View v){
-        if(v.getId() == (R.id.userGenderMaleRadio)) {
-            genderSelected = "Male";
+        if(v.getId() == (R.id.loseWeight)) {
+            goalSelected = "Lose Weight";
+        } else if(v.getId() == (R.id.loseWeight)){
+            goalSelected = "Maintain Weight";
         } else {
-            genderSelected = "Female";
+            goalSelected = "Gain Weight";
         }
     }
 
