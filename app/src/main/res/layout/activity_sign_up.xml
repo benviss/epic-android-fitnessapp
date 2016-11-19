@@ -17,95 +17,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/goalInfoView">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Please Provide Goal Details"
-            android:id="@+id/viewTitleGoals"
-            android:background="@color/colorPrimaryDark"
-            android:padding="5dp"
-            android:textColor="@color/colorPrimaryLight"
-            android:layout_marginTop="36dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userTargetWeight"
-            android:hint="Target Weight(If Applicable)"
-            android:layout_marginTop="78dp"
-            android:layout_below="@+id/radioGroup"
-            android:layout_centerHorizontal="true"
-            android:inputType="number" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="105dp"
-            android:id="@+id/radioGroup"
-            android:layout_below="@+id/viewTitleGoals"
-            android:layout_centerHorizontal="true">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lose Weight"
-                android:id="@+id/loseWeight"
-                android:checked="false"
-                android:onClick="onClickUserGoal" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gain Weight"
-                android:id="@+id/gainWeight"
-                android:checked="false"
-                android:onClick="onClickUserGoal" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MaintainWeight"
-                android:id="@+id/radioButton2"
-                android:layout_gravity="center_horizontal"
-                android:checked="false"
-                android:onClick="onClickUserGoal" />
-        </RadioGroup>
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Submit Info"
-            android:id="@+id/submitUserInfoButton"
-            android:background="@color/colorAccent"
-            android:minWidth="100dp"
-            android:onClick="onClickSubmitUserInfo"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Back"
-            android:id="@+id/backButton2"
-            android:background="@color/colorAccent"
-            android:minWidth="100dp"
-            android:onClick="onClickBack"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/healthInfoView">
 
         <TextView
@@ -285,6 +196,95 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="onClickContinue" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/goalInfoView">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Please Provide Goal Details"
+            android:id="@+id/viewTitleGoals"
+            android:background="@color/colorPrimaryDark"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryLight"
+            android:layout_marginTop="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userTargetWeight"
+            android:hint="Target Weight(If Applicable)"
+            android:layout_marginTop="78dp"
+            android:layout_below="@+id/radioGroup"
+            android:layout_centerHorizontal="true"
+            android:inputType="number" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:id="@+id/radioGroup"
+            android:layout_below="@+id/viewTitleGoals"
+            android:layout_centerHorizontal="true">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lose Weight"
+                android:id="@+id/loseWeight"
+                android:checked="false"
+                android:onClick="onClickUserGoal" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gain Weight"
+                android:id="@+id/gainWeight"
+                android:checked="false"
+                android:onClick="onClickUserGoal" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MaintainWeight"
+                android:id="@+id/radioButton2"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"
+                android:onClick="onClickUserGoal" />
+        </RadioGroup>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Submit Info"
+            android:id="@+id/submitUserInfoButton"
+            android:background="@color/colorAccent"
+            android:minWidth="100dp"
+            android:onClick="onClickSubmitUserInfo"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Back"
+            android:id="@+id/backButton2"
+            android:background="@color/colorAccent"
+            android:minWidth="100dp"
+            android:onClick="onClickBack"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
 </ViewFlipper>
