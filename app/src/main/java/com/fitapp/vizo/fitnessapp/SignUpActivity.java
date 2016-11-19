@@ -37,10 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
     }
 
-
-
-
-//Creates new User and loges user contact info
+    //Creates new User and moves to MainActivity
     public void onClickSubmitUserInfo(View v) {
         String newUserFirstNameInput  = newUserFirstNameField.getText().toString();
         String newUserLastNameInput = newUserLastNameField.getText().toString();
@@ -57,6 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(!(newUserTargetWeightField.getText().toString().equals(""))) {
             newUserTargetWeight  = Integer.parseInt(newUserTargetWeightField.getText().toString());
         }
+        //checks for all user inputs
         if(
                 (newUserFirstNameInput.equals("")) ||
                 (genderSelected.equals("")) ||
@@ -79,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(newIntent);
         }
     }
-
+    //continue button switches viewflipper
     public void onClickContinue(View v) {
         if (v.getId() == (R.id.continueButton1)) {
             String newUserGreeting = newUserFirstNameField.getText().toString();
@@ -98,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.healthInfoView)));
         }
     }
-
+    //records radio button changes
     public void onClickGenderSet(View v){
         if(v.getId() == (R.id.userGenderMaleRadio)) {
             genderSelected = "Male";
@@ -106,7 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
             genderSelected = "Female";
         }
     }
-
+    //records radio button to change
     public void onClickUserGoal(View v){
         if(v.getId() == (R.id.loseWeight)) {
             goalSelected = "Lose Weight";

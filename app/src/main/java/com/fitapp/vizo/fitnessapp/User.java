@@ -17,8 +17,6 @@ public class User implements Serializable {
     private String goal;
     private int targetWeight;
 
-
-
     public User(String newFirstName, String newUserLastNameInput, String newUserUsernameInput, String newUserPasswordInput, int newUserWeight, String newUserHeight,String  newUserBirthDate, String newUserGoal, String newUserGender, int newUserTargetWeight)
     {
         this.firstName = newFirstName;
@@ -34,12 +32,8 @@ public class User implements Serializable {
 
     }
 
-
-
 //    Getters for User Info
-    public String getFirstName() {
-        return this.firstName;
-    }
+    public String getFirstName() {return this.firstName;}
     public String getLastName() {
         return this.lastName;
     }

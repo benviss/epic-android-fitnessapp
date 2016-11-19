@@ -9,12 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.Serializable;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 public class MainActivity extends AppCompatActivity {
     @Bind(R.id.muscleGroupSelected) TextView muscleGroupSelected;
@@ -36,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Intent receiveUser = getIntent();
         currentUser = (User) receiveUser.getSerializableExtra("userSelected");
         userFirstName.setText(currentUser.getFirstName());
-
-
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, exercises);
         mListView.setAdapter(adapter);
