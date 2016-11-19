@@ -1,9 +1,11 @@
 package com.fitapp.vizo.fitnessapp;
 
+import java.io.Serializable;
+
 /**
  * Created by Guest on 11/18/16.
  */
-public class User {
+public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String username;

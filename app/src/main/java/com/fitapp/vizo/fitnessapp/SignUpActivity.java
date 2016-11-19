@@ -1,5 +1,6 @@
 package com.fitapp.vizo.fitnessapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import java.io.Serializable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,8 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     ViewFlipper viewflipper;
-    private String genderSelected;
-    private String goalSelected;
+    private String genderSelected = "";
+    private String goalSelected = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +49,38 @@ public class SignUpActivity extends AppCompatActivity {
         String newUserLastNameInput = newUserLastNameField.getText().toString();
         String newUserUsernameInput = newUserUsernameField.getText().toString();
         String newUserPasswordInput = newUserPasswordField.getText().toString();
-        int newUserWeight  = Integer.parseInt(newUserWeightField.getText().toString());
+        int newUserWeight = 0;
+        if(!(newUserWeightField.getText().toString().equals(""))) {
+            newUserWeight  = Integer.parseInt(newUserWeightField.getText().toString());
+        }
         String newUserHeight = newUserHeightField.getText().toString();
         String newUserBirthDate = newUserBirthDateField.getText().toString();
-        int newUserTargetWeight = Integer.parseInt(newUserTargetWeightField.getText().toString());
 
+        int newUserTargetWeight = 0;
+        if(!(newUserTargetWeightField.getText().toString().equals(""))) {
+            newUserTargetWeight  = Integer.parseInt(newUserTargetWeightField.getText().toString());
+        }
+        if(
+                (newUserFirstNameInput.equals("")) ||
+                (genderSelected.equals("")) ||
+                (newUserLastNameInput.equals("")) ||
+                (newUserUsernameInput.equals("")) ||
+                (newUserPasswordInput.equals("")) ||
+                (newUserWeight == 0) ||
+                (newUserHeight.equals("")) ||
+                (newUserBirthDate.equals("")) ||
+                (newUserTargetWeight == 0) ||
+                (goalSelected.equals(""))) {
+            Toast.makeText(SignUpActivity.this, "Please provide information for all fields", Toast.LENGTH_SHORT).show();
+            Log.d("test", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
+        } else {
 
-
-        User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
-        Log.d("test",newUser.getFirstName());
-        Log.d("test",newUser.getLastName());
-        Log.d("test",newUser.getUsername());
-        Log.d("test",newUser.getPassword());
-        Log.d("test",newUser.getHeight());
-        Log.d("test",Integer.toString(newUser.getWeight()));
-        Log.d("test",newUser.getGender());
-        Log.d("test",newUser.getBirthdate());
-        Log.d("test",newUser.getGoal());
-        Log.d("test",Integer.toString(newUser.getTargetWeight()));
+            Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
+            User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
+            Intent newIntent = new Intent(SignUpActivity.this, MainActivity.class);
+            newIntent.putExtra("NewUser", newUser);
+            startActivity(newIntent);
+        }
     }
 
     public void onClickContinue(View v) {
