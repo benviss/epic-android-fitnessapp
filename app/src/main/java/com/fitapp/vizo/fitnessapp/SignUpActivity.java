@@ -5,16 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
-import java.io.Serializable;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SignUpActivity extends AppCompatActivity {
-    private ViewFlipper viewFlipper;
     @Bind(R.id.newUserFirstName) EditText newUserFirstNameField;
     @Bind(R.id.newUserLastName) EditText newUserLastNameField;
     @Bind(R.id.newUserUsername) EditText newUserUsernameField;
@@ -23,10 +22,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Bind(R.id.userHeightInput) EditText newUserHeightField;
     @Bind(R.id.userBirthInput) EditText newUserBirthDateField;
     @Bind(R.id.userTargetWeight) EditText newUserTargetWeightField;
-
-
-
-
 
     ViewFlipper viewflipper;
     private String genderSelected = "";
@@ -41,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
         viewflipper = (ViewFlipper) findViewById(R.id.viewflipper);
         viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
     }
+
+
 
 
 //Creates new User and loges user contact info
@@ -78,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
             Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
             User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
             Intent newIntent = new Intent(SignUpActivity.this, MainActivity.class);
-            newIntent.putExtra("NewUser", newUser);
+            newIntent.putExtra("userSelected", newUser);
             startActivity(newIntent);
         }
     }

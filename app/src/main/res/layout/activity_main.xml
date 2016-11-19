@@ -10,5 +10,9 @@
     tools:context="com.fitapp.vizo.fitnessapp.MainActivity"
     android:background="@color/colorPrimary">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/userFirstName"
+        android:text=""/>
 </RelativeLayout>
