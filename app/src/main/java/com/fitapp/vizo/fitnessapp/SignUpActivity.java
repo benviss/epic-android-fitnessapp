@@ -86,7 +86,6 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.goalInfoView)));
         }
-
     }
 
     public void onClickBack(View v) {
@@ -114,7 +113,4 @@ public class SignUpActivity extends AppCompatActivity {
             goalSelected = "Gain Weight";
         }
     }
-
-
-
 }
