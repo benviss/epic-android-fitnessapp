@@ -12,23 +12,26 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/NoActionBarTheme"></activity>
+            android:theme="@style/NoActionBarTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".services.LogUserWorkout"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".ui.LogInActivity"
             android:theme="@style/NoActionBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.SignUpActivity"
             android:theme="@style/NoActionBarTheme" />
-
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/NoActionBarTheme"
+            ></activity>
     </application>
 
 </manifest>
