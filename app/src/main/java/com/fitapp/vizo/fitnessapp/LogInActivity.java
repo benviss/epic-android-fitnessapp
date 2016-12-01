@@ -28,10 +28,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
     @Override
     public void onClick(View v) {
-        if (v.getId() == mLogInButton.getId()) {
+        if (v == mLogInButton) {
             //// TODO: 12/1/16 Will eventually do user Authentication, will set up once firebase has been implemented
             Toast.makeText(LogInActivity.this, "Log in functionality not yet enabled", Toast.LENGTH_LONG).show();
-        } else if (v.getId() == mSignUpUser.getId()) {
+        } else if (v == mSignUpUser) {
             Intent signUpIntent = new Intent(LogInActivity.this, SignUpActivity.class);
             startActivity(signUpIntent);
         }
