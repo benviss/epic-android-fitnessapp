@@ -47,16 +47,35 @@ public class WgerCallService {
                     int id = Integer.parseInt(exerciseJSON.optString("id", "-1"));
                     String name = exerciseJSON.optString("name", "Name Not Found");
                     int category = Integer.parseInt(exerciseJSON.optString("category", "-1"));
-                    Log.d("Test", "id = " + id + "|" + " | name = " + name + "|" + "  |Category = " + category + "|");
-
+                    String description = exerciseJSON.optString("description", "Description Not Found");
+                    ArrayList<Integer> muscles = new ArrayList<>();
+                    JSONArray muscleArray = exerciseJSON.getJSONArray("muscles");
+                    for (int j = 0; j < muscleArray.length(); j++) {
+                        int muscle = Integer.parseInt(muscleArray.getString(j));
+                        muscles.add(muscle);
+                    }
+                    JSONArray secondaryMuscleArray = exerciseJSON.getJSONArray("muscles_secondary");
+                    ArrayList<Integer> secondaryMuscles = new ArrayList<>();
+                    for (int j = 0; j < secondaryMuscleArray.length(); j++) {
+                        int muscle = Integer.parseInt(secondaryMuscleArray.getString(j));
+                        secondaryMuscles.add(muscle);
+                    }
+                    JSONArray equipmentJSON = exerciseJSON.getJSONArray("equipment");
+                    ArrayList<Integer> equipment = new ArrayList<>();
+                    for (int j = 0; j < equipmentJSON.length(); j++) {
+                        int equip = Integer.parseInt(equipmentJSON.getString(j));
+                        equipment.add(equip);
+                    }
+                    Exercise newExercise = new Exercise(id, name, description, muscles ,secondaryMuscles ,equipment ,category);
+                    exercises.add(newExercise);
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.d("name", Integer.toString(exercises.get(0).getMuscles().size()));
         return exercises;
     }
 }
