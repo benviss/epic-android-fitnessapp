@@ -12,8 +12,9 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LogInActivity extends AppCompatActivity {
-    private Button loginButton;
+public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
+    @Bind(R.id.signUpUser) TextView mSignUpUser;
+    @Bind(R.id.logInButton) Button mLogInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,17 @@ public class LogInActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        loginButton = (Button) findViewById(R.id.logInButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LogInActivity.this, "Log in functionality not yet enabled", Toast.LENGTH_LONG).show();
-            }
-        });
+        mLogInButton.setOnClickListener(this);
+        mSignUpUser.setOnClickListener(this);
     }
-    public void onClickUserSignUp(View v) {
-        Intent signUpIntent = new Intent(LogInActivity.this, SignUpActivity.class);
-        startActivity(signUpIntent);
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == mLogInButton.getId()) {
+            //// TODO: 12/1/16 Will eventually do user Authentication, will set up once firebase has been implemented
+            Toast.makeText(LogInActivity.this, "Log in functionality not yet enabled", Toast.LENGTH_LONG).show();
+        } else if (v.getId() == mSignUpUser.getId()) {
+            Intent signUpIntent = new Intent(LogInActivity.this, SignUpActivity.class);
+            startActivity(signUpIntent);
+        }
     }
-
 }

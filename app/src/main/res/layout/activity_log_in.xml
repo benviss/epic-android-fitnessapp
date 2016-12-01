@@ -44,20 +44,18 @@
         android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/editText2"
         android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="27dp"
-        android:onClick="onClickUserLogin" />
+        android:layout_marginTop="27dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/signUp"
-        android:id="@+id/onClickUserSignUpText"
+        android:id="@+id/signUpUser"
         android:layout_below="@+id/logInButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
         android:textColor="@color/colorIcons"
-        android:onClick="onClickUserSignUp"
         android:clickable="true" />
 
     <ImageView
