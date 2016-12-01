@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.fitapp.vizo.fitnessapp.R;
+import com.fitapp.vizo.fitnessapp.models.User;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

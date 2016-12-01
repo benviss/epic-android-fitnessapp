@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fitapp.vizo.fitnessapp.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -26,7 +28,8 @@ public class LogInActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LogInActivity.this, "Log in functionality not yet enabled", Toast.LENGTH_LONG).show();
+                Intent loginIntent = new Intent(LogInActivity.this, MainActivity.class);
+                startActivity(loginIntent);
             }
         });
     }
