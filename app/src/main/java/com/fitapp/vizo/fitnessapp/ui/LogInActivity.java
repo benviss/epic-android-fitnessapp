@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp;
+package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

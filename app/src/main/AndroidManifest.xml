@@ -9,14 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
         </activity>
         <activity
-            android:name=".LogUserWorkout"
+            android:name=".services.LogUserWorkout"
             android:theme="@style/NoActionBarTheme" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".ui.LogInActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-            android:name=".SignUpActivity"
+            android:name=".ui.SignUpActivity"
             android:theme="@style/NoActionBarTheme"></activity>
     </application>
 

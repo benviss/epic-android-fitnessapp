@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp;
+package com.fitapp.vizo.fitnessapp.services;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp;
+package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 import java.io.Serializable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.fitapp.vizo.fitnessapp.R;
+import com.fitapp.vizo.fitnessapp.models.User;
 
 public class MainActivity extends AppCompatActivity {
     @Bind(R.id.muscleGroupSelected) TextView muscleGroupSelected;
