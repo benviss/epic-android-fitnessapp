@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp.services;
+package com.fitapp.vizo.fitnessapp;
 
 import android.os.Build;
 

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.User;
-import com.fitapp.vizo.fitnessapp.services.Exercise;
+import com.fitapp.vizo.fitnessapp.models.Exercise;
 import com.fitapp.vizo.fitnessapp.services.WgerCallService;
 
 import java.io.IOException;

@@ -1,10 +1,7 @@
-package com.fitapp.vizo.fitnessapp.services;
+package com.fitapp.vizo.fitnessapp.models;
 
 import java.util.ArrayList;
 
-/**
- * Created by Guest on 12/1/16.
- */
 public class Exercise {
     private int id;
     private String name;

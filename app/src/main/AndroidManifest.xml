@@ -33,5 +33,4 @@
             android:theme="@style/NoActionBarTheme"
             ></activity>
     </application>
-
 </manifest>
