@@ -64,7 +64,7 @@
         android:layout_width="225dp"
         android:layout_height="225dp"
         android:id="@+id/imageView"
-        android:src="@drawable/vlogo"
+        android:src="@drawable/logo"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:layout_alignParentTop="true"
