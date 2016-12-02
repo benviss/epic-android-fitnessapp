@@ -1,7 +1,9 @@
 package com.fitapp.vizo.fitnessapp.models;
 
+import org.parceler.Parcel;
 import java.util.ArrayList;
 
+@Parcel
 public class Exercise {
     private int id;
     private String name;
@@ -10,6 +12,8 @@ public class Exercise {
     private ArrayList<Integer> secondaryMuscles;
     private ArrayList<Integer> equipment;
     private int category;
+
+    public Exercise() {}
 
     public Exercise(int id, String name, String description, ArrayList<Integer> muscles, ArrayList<Integer> secondaryMuscles, ArrayList<Integer> equipment, int category) {
         this.id = id;

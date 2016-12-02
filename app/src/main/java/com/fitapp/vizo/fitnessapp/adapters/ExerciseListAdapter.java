@@ -1,6 +1,7 @@
 package com.fitapp.vizo.fitnessapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
+import com.fitapp.vizo.fitnessapp.ui.ExerciseDetailActivity;
 
+import org.parceler.Parcels;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -48,7 +51,9 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         return mExercises.size();
     }
 
-    public class ExerciseViewHolder extends RecyclerView.ViewHolder {
+
+
+    public class ExerciseViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         @Bind(R.id.exerciseNameTextView) TextView mExerciseTextView;
         @Bind(R.id.primaryMuscleTextView) TextView mPrimaryMuscleTextView;
 
@@ -56,12 +61,21 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindExercise(Exercise exercise) {
             mExerciseTextView.setText(exercise.getName());
             mPrimaryMuscleTextView.setText(exercise.getDescription());
 
+        }
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, ExerciseDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("exercises", Parcels.wrap(mExercises));
+            mContext.startActivity(intent);
         }
     }
 }
