@@ -1,6 +1,7 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.signUpUser) TextView mSignUpUser;
     @Bind(R.id.logInButton) Button mLogInButton;
+    @Bind(R.id.aboutMeTextView) TextView mAboutMeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         mLogInButton.setOnClickListener(this);
         mSignUpUser.setOnClickListener(this);
+        mAboutMeTextView.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -37,6 +40,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         } else if (v == mSignUpUser) {
             Intent signUpIntent = new Intent(LogInActivity.this, SignUpActivity.class);
             startActivity(signUpIntent);
+        } else if (v == mAboutMeTextView) {
+            Intent githubIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/benviss"));
+            startActivity(githubIntent);
         }
     }
 }
