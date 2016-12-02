@@ -3,9 +3,11 @@ package com.fitapp.vizo.fitnessapp.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +28,22 @@ import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
     public ArrayList<Exercise> exercises = new ArrayList<>();
-    @Bind(R.id.muscleGroupSelected) TextView muscleGroupSelected;
-    @Bind(R.id.exerciseList)
-    ListView mListView;
-    @Bind(R.id.userFirstName) TextView userFirstName;
     User currentUser;
+    @Bind(R.id.muscle1) Button mMuscle1;
+    @Bind(R.id.muscle2) Button mMuscle2;
+    @Bind(R.id.muscle3) Button mMuscle3;
+    @Bind(R.id.muscle4) Button mMuscle4;
+    @Bind(R.id.muscle5) Button mMuscle5;
+    @Bind(R.id.muscle6) Button mMuscle6;
+    @Bind(R.id.muscle7) Button mMuscle7;
+    @Bind(R.id.muscle8) Button mMuscle8;
+    @Bind(R.id.muscle9) Button mMuscle9;
+    @Bind(R.id.muscle10) Button mMuscle10;
+    @Bind(R.id.muscle11) Button mMuscle11;
+    @Bind(R.id.muscle12) Button mMuscle12;
+    @Bind(R.id.muscle13) Button mMuscle13;
+    @Bind(R.id.muscle14) Button mMuscle14;
+    @Bind(R.id.muscle15) Button mMuscle15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,28 +54,34 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent receiveUser = getIntent();
         currentUser = (User) receiveUser.getSerializableExtra("userSelected");
-//        userFirstName.setText(currentUser.getFirstName());
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, exercises);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String exercise = ((TextView)view).getText().toString();
-                Toast.makeText(HomeActivity.this, exercise, Toast.LENGTH_LONG).show();
-            }
-        });
+
+        mMuscle1.setOnClickListener(this);
+        mMuscle2.setOnClickListener(this);
+        mMuscle3.setOnClickListener(this);
+        mMuscle4.setOnClickListener(this);
+        mMuscle5.setOnClickListener(this);
+        mMuscle6.setOnClickListener(this);
+        mMuscle7.setOnClickListener(this);
+        mMuscle8.setOnClickListener(this);
+        mMuscle9.setOnClickListener(this);
+        mMuscle10.setOnClickListener(this);
+        mMuscle11.setOnClickListener(this);
+        mMuscle12.setOnClickListener(this);
+        mMuscle13.setOnClickListener(this);
+        mMuscle14.setOnClickListener(this);
+        mMuscle15.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
+        String muscleSelected = v.getResources().getResourceEntryName(v.getId());
+        int muscleNumber = Integer.parseInt(muscleSelected.substring(6));
+//        Log.d("Test", muscleNumber);
     }
 
 
     private void getExercises() {
-
-
         final WgerCallService wgerCallService = new WgerCallService();
         wgerCallService.findExercises(new Callback() {
 
@@ -75,7 +94,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call call, Response response){
                 exercises = wgerCallService.processResults(response);
             }
-
         });
     }
 }
