@@ -5,6 +5,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import com.fitapp.vizo.fitnessapp.Constants;
@@ -46,7 +48,8 @@ public class WgerCallService {
                     int id = Integer.parseInt(exerciseJSON.optString("id", "-1"));
                     String name = exerciseJSON.optString("name", "Name Not Found");
                     int category = Integer.parseInt(exerciseJSON.optString("category", "-1"));
-                    String description = exerciseJSON.optString("description", "Description Not Found");
+                    String tempDescription = exerciseJSON.optString("description", "Description Not Found");
+                    String description = html2text(tempDescription);
                     ArrayList<Integer> muscles = new ArrayList<>();
                     JSONArray muscleArray = exerciseJSON.getJSONArray("muscles");
                     for (int j = 0; j < muscleArray.length(); j++) {
@@ -76,5 +79,8 @@ public class WgerCallService {
             e.printStackTrace();
         }
         return exercises;
+    }
+    public static String html2text(String html) {
+        return Jsoup.parse(html).text();
     }
 }
