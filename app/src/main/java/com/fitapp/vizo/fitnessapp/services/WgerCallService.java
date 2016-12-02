@@ -18,13 +18,12 @@ import okhttp3.Response;
 
 public class WgerCallService {
 
-    public static void findExercises(Callback callback) {
+    public static void findExercises(String muscle, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.WGER_BASE_URL).newBuilder();
-//        urlBuilder.addQueryParameter(Constants.WEATHER_API_QUERY, Constants.WEATHER_KEY);
-//        urlBuilder.addQueryParameter(Constants.WEATHER_LOCATION_QUERY, location);
+        urlBuilder.addQueryParameter(Constants.WGER_MUSCLE_QUERY, muscle);
         String url = urlBuilder.build().toString();
 
         Request request= new Request.Builder()
@@ -67,6 +66,7 @@ public class WgerCallService {
                         equipment.add(equip);
                     }
                     Exercise newExercise = new Exercise(id, name, description, muscles ,secondaryMuscles ,equipment ,category);
+                    Log.d("ben", newExercise.getName());
                     exercises.add(newExercise);
                 }
             }
@@ -75,7 +75,6 @@ public class WgerCallService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("name", Integer.toString(exercises.get(0).getMuscles().size()));
         return exercises;
     }
 }

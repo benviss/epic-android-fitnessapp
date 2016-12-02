@@ -27,7 +27,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
-    public ArrayList<Exercise> exercises = new ArrayList<>();
     User currentUser;
     @Bind(R.id.muscle1) Button mMuscle1;
     @Bind(R.id.muscle2) Button mMuscle2;
@@ -54,8 +53,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent receiveUser = getIntent();
         currentUser = (User) receiveUser.getSerializableExtra("userSelected");
-
-
         mMuscle1.setOnClickListener(this);
         mMuscle2.setOnClickListener(this);
         mMuscle3.setOnClickListener(this);
@@ -76,24 +73,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String muscleSelected = v.getResources().getResourceEntryName(v.getId());
-        int muscleNumber = Integer.parseInt(muscleSelected.substring(6));
-//        Log.d("Test", muscleNumber);
+        String muscleNumber = muscleSelected.substring(6);
+        Intent exerciseListIntent = new Intent(HomeActivity.this, ExerciseListActivity.class);
+        exerciseListIntent.putExtra("muscle", muscleNumber);
+        startActivity(exerciseListIntent);
     }
 
 
-    private void getExercises() {
-        final WgerCallService wgerCallService = new WgerCallService();
-        wgerCallService.findExercises(new Callback() {
 
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response){
-                exercises = wgerCallService.processResults(response);
-            }
-        });
-    }
 }
