@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fitapp.vizo.fitnessapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,25 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/NoActionBarTheme">
-        </activity>
-        <activity
-            android:name=".LogUserWorkout"
-            android:theme="@style/NoActionBarTheme" />
-        <activity
-            android:name=".LogInActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".SignUpActivity"
-            android:theme="@style/NoActionBarTheme"></activity>
+            android:name=".services.LogUserWorkout"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".ui.LogInActivity"
+            android:theme="@style/NoActionBarTheme">
+        </activity>
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/NoActionBarTheme"
+            ></activity>
     </application>
-
 </manifest>

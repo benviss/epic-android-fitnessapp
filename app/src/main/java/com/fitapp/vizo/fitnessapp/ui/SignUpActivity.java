@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp;
+package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.fitapp.vizo.fitnessapp.R;
+import com.fitapp.vizo.fitnessapp.models.User;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -71,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
             User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
-            Intent newIntent = new Intent(SignUpActivity.this, MainActivity.class);
+            Intent newIntent = new Intent(SignUpActivity.this, HomeActivity.class);
             newIntent.putExtra("userSelected", newUser);
             startActivity(newIntent);
         }

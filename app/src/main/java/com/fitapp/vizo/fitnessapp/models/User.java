@@ -1,4 +1,4 @@
-package com.fitapp.vizo.fitnessapp;
+package com.fitapp.vizo.fitnessapp.models;
 
 import java.io.Serializable;
 
