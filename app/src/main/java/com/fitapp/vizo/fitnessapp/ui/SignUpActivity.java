@@ -75,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
             User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
-            Intent newIntent = new Intent(SignUpActivity.this, MainActivity.class);
+            Intent newIntent = new Intent(SignUpActivity.this, HomeActivity.class);
             newIntent.putExtra("userSelected", newUser);
             startActivity(newIntent);
         }

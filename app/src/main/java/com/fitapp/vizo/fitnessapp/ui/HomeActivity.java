@@ -24,7 +24,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
     public ArrayList<Exercise> exercises = new ArrayList<>();
     @Bind(R.id.muscleGroupSelected) TextView muscleGroupSelected;
     @Bind(R.id.exerciseList)
@@ -52,10 +52,12 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, exercise, Toast.LENGTH_LONG).show();
             }
         });
-
-        getExercises();
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 
 
     private void getExercises() {

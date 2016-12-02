@@ -10,28 +10,139 @@
     tools:context="com.fitapp.vizo.fitnessapp.ui.HomeActivity">
 
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Example API Pull"
-        android:id="@+id/muscleGroupSelected"
-        android:layout_alignTop="@+id/userFirstName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="131dp" />
+        android:text="Deltoid"
+        android:id="@+id/muscle2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="79dp" />
 
-    <ListView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/exerciseList"
-        android:layout_below="@+id/muscleGroupSelected"
+        android:text="Biceps"
+        android:id="@+id/muscle1"
+        android:layout_below="@+id/muscle2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brachialis"
+        android:id="@+id/muscle13"
+        android:layout_below="@+id/muscle1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Obliques"
+        android:id="@+id/muscle14"
+        android:layout_below="@+id/muscle13"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pectoralis Major"
+        android:id="@+id/muscle4"
+        android:layout_below="@+id/muscle14"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rectus Abdominis"
+        android:id="@+id/muscle6"
+        android:layout_below="@+id/muscle4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Serratus Anterior"
+        android:id="@+id/muscle3"
+        android:layout_below="@+id/muscle6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quadriceps"
+        android:id="@+id/muscle10"
+        android:layout_below="@+id/muscle3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Biceps Femoris"
+        android:id="@+id/muscle11"
+        android:layout_above="@+id/muscle1"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/userFirstName"
-        android:layout_centerHorizontal="true" />
+        android:text="Gastrocnemius"
+        android:id="@+id/muscle7"
+        android:layout_below="@+id/muscle11"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gluteus Maximus"
+        android:id="@+id/muscle8"
+        android:layout_below="@+id/muscle7"
+        android:layout_alignRight="@+id/muscle7"
+        android:layout_alignEnd="@+id/muscle7" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latissimus Dorsi"
+        android:id="@+id/muscle12"
+        android:layout_below="@+id/muscle8"
+        android:layout_alignRight="@+id/muscle8"
+        android:layout_alignEnd="@+id/muscle8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soleus"
+        android:id="@+id/muscle15"
+        android:layout_below="@+id/muscle12"
+        android:layout_alignRight="@+id/muscle12"
+        android:layout_alignEnd="@+id/muscle12" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trapezius"
+        android:id="@+id/muscle9"
+        android:layout_below="@+id/muscle15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Triceps Brachii"
+        android:id="@+id/muscle5"
+        android:layout_below="@+id/muscle9"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
