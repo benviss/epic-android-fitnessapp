@@ -1,6 +1,8 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.User;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
@@ -27,6 +30,9 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     User currentUser;
     @Bind(R.id.muscle1) Button mMuscle1;
     @Bind(R.id.muscle2) Button mMuscle2;
@@ -68,15 +74,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mMuscle13.setOnClickListener(this);
         mMuscle14.setOnClickListener(this);
         mMuscle15.setOnClickListener(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
     }
 
     @Override
     public void onClick(View v) {
+        Button muscleNameButton = (Button) v;
+        String muscleName = muscleNameButton.getText().toString();
+        saveMuscleSelected(muscleName);
         String muscleSelected = v.getResources().getResourceEntryName(v.getId());
         String muscleNumber = muscleSelected.substring(6);
         Intent exerciseListIntent = new Intent(HomeActivity.this, ExerciseListActivity.class);
         exerciseListIntent.putExtra("muscle", muscleNumber);
         startActivity(exerciseListIntent);
+    }
+
+    public void saveMuscleSelected(String muscle) {
+        mEditor.putString(Constants.PREFERENCES_MUSCLE_KEY, muscle).apply();
+        String text = mSharedPreferences.getString(Constants.PREFERENCES_MUSCLE_KEY, null);
+        Log.d("test", text);
     }
 
 

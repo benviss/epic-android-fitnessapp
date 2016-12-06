@@ -1,6 +1,7 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,8 +25,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class ExerciseListActivity extends AppCompatActivity {
-    public ArrayList<Exercise> mExercises = new ArrayList<>();
 
+    public ArrayList<Exercise> mExercises = new ArrayList<>();
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private ExerciseListAdapter mAdapter;
@@ -39,6 +40,8 @@ public class ExerciseListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String muscle = intent.getStringExtra("muscle");
         getExercises(muscle);
+
+
     }
 
     private void getExercises(String muscleSelected) {

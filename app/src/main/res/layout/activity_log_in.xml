@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
         android:hint="Password"
+        android:inputType="textPassword"
         android:background="@color/colorPrimaryLight"
         android:minWidth="250dp"
         android:textAlignment="center"

@@ -1,8 +1,11 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +16,17 @@ import android.widget.ViewFlipper;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.User;
 
+import org.w3c.dom.Text;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements TextWatcher {
     @Bind(R.id.newUserFirstName) EditText newUserFirstNameField;
     @Bind(R.id.newUserLastName) EditText newUserLastNameField;
     @Bind(R.id.newUserUsername) EditText newUserUsernameField;
     @Bind(R.id.newUserPassword) EditText newUserPasswordField;
+    @Bind(R.id.confirmPassword) EditText confirmPasswordField;
     @Bind(R.id.userWeightInput) EditText newUserWeightField;
     @Bind(R.id.userHeightInput) EditText newUserHeightField;
     @Bind(R.id.userBirthInput) EditText newUserBirthDateField;
@@ -29,6 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
     ViewFlipper viewflipper;
     private String genderSelected = "";
     private String goalSelected = "";
+    private boolean validatedPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,9 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         viewflipper = (ViewFlipper) findViewById(R.id.viewflipper);
         viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
+
+        newUserPasswordField.addTextChangedListener(this);
+        confirmPasswordField.addTextChangedListener(this);
     }
 
     //Creates new User and moves to MainActivity
@@ -60,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         //checks for all user inputs
         if(
                 (newUserFirstNameInput.equals("")) ||
+                (validatedPassword) ||
                 (genderSelected.equals("")) ||
                 (newUserLastNameInput.equals("")) ||
                 (newUserUsernameInput.equals("")) ||
@@ -115,5 +126,28 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             goalSelected = "Gain Weight";
         }
+    }
+    @Override
+    public void afterTextChanged(Editable s) {
+        TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.inputLayout);
+        String newUserPasswordInput = newUserPasswordField.getText().toString();
+        String confirmPassword = confirmPasswordField.getText().toString();
+        if (newUserPasswordInput.equals(confirmPassword)) {
+            validatedPassword = true;
+            inputLayout.setError(null);//Clears new password validator flag
+        } else {
+            validatedPassword = false;
+            inputLayout.setError("Passwords do not match");//Shows error when new password validation doesn't match
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
     }
 }

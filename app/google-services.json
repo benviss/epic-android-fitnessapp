@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "355848695895",
+    "firebase_url": "https://vfit-5b250.firebaseio.com",
+    "project_id": "vfit-5b250",
+    "storage_bucket": "vfit-5b250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355848695895:android:f51dad983d780573",
+        "android_client_info": {
+          "package_name": "com.fitapp.vizo.fitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355848695895-5itopp1u5lmr3sk94u527ufcns5mluqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyButcMBYWrtfkywMW0e1UQCFqqL6AbL-Rs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

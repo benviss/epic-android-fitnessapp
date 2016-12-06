@@ -2,12 +2,15 @@ package com.fitapp.vizo.fitnessapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
 import com.fitapp.vizo.fitnessapp.ui.ExerciseDetailActivity;
@@ -51,23 +54,25 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         return mExercises.size();
     }
 
-
-
     public class ExerciseViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         @Bind(R.id.exerciseNameTextView) TextView mExerciseTextView;
         @Bind(R.id.primaryMuscleTextView) TextView mPrimaryMuscleTextView;
+        private String mSelectedMuscle;
+        private SharedPreferences mSharedPreferences;
 
         public ExerciseViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+            mSelectedMuscle = mSharedPreferences.getString(Constants.PREFERENCES_MUSCLE_KEY, "Primary Muscle");
+
             itemView.setOnClickListener(this);
         }
 
         public void bindExercise(Exercise exercise) {
             mExerciseTextView.setText(exercise.getName());
-            mPrimaryMuscleTextView.setText(exercise.getDescription());
-
+            mPrimaryMuscleTextView.setText(mSelectedMuscle);
         }
         @Override
         public void onClick(View v) {
