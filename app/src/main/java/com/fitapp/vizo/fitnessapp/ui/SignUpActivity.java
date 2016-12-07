@@ -13,10 +13,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -70,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity implements TextWatcher {
         //checks for all user inputs
         if(
                 (newUserFirstNameInput.equals("")) ||
-                (validatedPassword) ||
+                (!validatedPassword) ||
                 (genderSelected.equals("")) ||
                 (newUserLastNameInput.equals("")) ||
                 (newUserUsernameInput.equals("")) ||
@@ -86,8 +91,12 @@ public class SignUpActivity extends AppCompatActivity implements TextWatcher {
 
             Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
             User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
+
             Intent newIntent = new Intent(SignUpActivity.this, HomeActivity.class);
-            newIntent.putExtra("userSelected", newUser);
+            DatabaseReference userRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_USERS);
+            userRef.push().setValue(newUser);
             startActivity(newIntent);
         }
     }

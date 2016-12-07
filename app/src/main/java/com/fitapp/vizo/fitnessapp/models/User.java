@@ -1,11 +1,12 @@
 package com.fitapp.vizo.fitnessapp.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Guest on 11/18/16.
  */
-public class User implements Serializable {
+public class User{
     private String firstName;
     private String lastName;
     private String username;
@@ -16,6 +17,7 @@ public class User implements Serializable {
     private String gender;
     private String goal;
     private int targetWeight;
+
 
     public User(String newFirstName, String newUserLastNameInput, String newUserUsernameInput, String newUserPasswordInput, int newUserWeight, String newUserHeight,String  newUserBirthDate, String newUserGoal, String newUserGender, int newUserTargetWeight)
     {

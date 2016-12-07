@@ -13,4 +13,7 @@ public class Constants {
     public static final String WGER_MUSCLE_QUERY = "muscles";
 
     public static final String PREFERENCES_MUSCLE_KEY= "muscle";
+    public static final String LOCAL_SETS_SAVED= "sets";
+
+    public static final String FIREBASE_CHILD_USERS= "users";
 }

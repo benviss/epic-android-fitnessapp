@@ -3,9 +3,12 @@ package com.fitapp.vizo.fitnessapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fitapp.vizo.fitnessapp.R;
@@ -19,7 +22,10 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExerciseDetailFragment extends Fragment {
+public class ExerciseDetailFragment extends Fragment implements View.OnClickListener{
+    @Bind(R.id.setWeight) EditText setWeightField;
+    @Bind(R.id.setReps) EditText setRepsField;
+    @Bind(R.id.addSetButton) Button addSetButton;
     @Bind(R.id.exerciseNameTextView) TextView mExerciseNameTextView;
     @Bind(R.id.primaryMuscleTextView) TextView mPrimaryMuscleTextView;
     @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
@@ -52,7 +58,21 @@ public class ExerciseDetailFragment extends Fragment {
         mPrimaryMuscleTextView.setText("Primary Muscle Changed");
         mSecondaryMuscleTextView.setText("Secondary Muscle Changed");
         mDescriptionTextView.setText(mExercise.getDescription());
+        addSetButton.setOnClickListener(this);
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        String setReps = setRepsField.getText().toString();
+        String setWeight = setWeightField.getText().toString();
+        int reps = 0;
+        int weight = 0;
+        if (!setReps.equals("")) {
+            if (!setWeight.equals("")) {
+                weight = Integer.parseInt(setWeight);
+            }
+            reps = Integer.parseInt(setReps);
+        }
+    }
 }

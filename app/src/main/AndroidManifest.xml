@@ -20,9 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".services.LogUserWorkout"
-            android:theme="@style/NoActionBarTheme" />
-        <activity
             android:name=".ui.LogInActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity
