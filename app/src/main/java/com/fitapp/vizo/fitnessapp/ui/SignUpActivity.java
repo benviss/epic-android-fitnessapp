@@ -1,45 +1,50 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.User;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SignUpActivity extends AppCompatActivity implements TextWatcher {
-    @Bind(R.id.newUserFirstName) EditText newUserFirstNameField;
-    @Bind(R.id.newUserLastName) EditText newUserLastNameField;
-    @Bind(R.id.newUserUsername) EditText newUserUsernameField;
-    @Bind(R.id.newUserPassword) EditText newUserPasswordField;
-    @Bind(R.id.confirmPassword) EditText confirmPasswordField;
-    @Bind(R.id.userWeightInput) EditText newUserWeightField;
-    @Bind(R.id.userHeightInput) EditText newUserHeightField;
-    @Bind(R.id.userBirthInput) EditText newUserBirthDateField;
-    @Bind(R.id.userTargetWeight) EditText newUserTargetWeightField;
+public class SignUpActivity extends AppCompatActivity  {
+    public static final String TAG = SignUpActivity.class.getSimpleName();
+
+    @Bind(R.id.newUserFirstName) EditText mName;
+    @Bind(R.id.newUserLastName) EditText mLastname;
+    @Bind(R.id.newEmail) EditText mEmail;
+    @Bind(R.id.newUserPassword) EditText mPassword;
+    @Bind(R.id.confirmPassword) EditText mConfirmPassword;
+    @Bind(R.id.userWeightInput) EditText mWeight;
+    @Bind(R.id.userHeightInput) EditText mHeight;
+    @Bind(R.id.userBirthInput) EditText mBirth;
+    @Bind(R.id.userTargetWeight) EditText mTargetWeight;
+
+    private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String name;
 
     ViewFlipper viewflipper;
     private String genderSelected = "";
     private String goalSelected = "";
+    private int userTargetWeight = 0;
     private boolean validatedPassword = false;
 
     @Override
@@ -51,59 +56,58 @@ public class SignUpActivity extends AppCompatActivity implements TextWatcher {
         viewflipper = (ViewFlipper) findViewById(R.id.viewflipper);
         viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
 
-        newUserPasswordField.addTextChangedListener(this);
-        confirmPasswordField.addTextChangedListener(this);
+        mAuth = FirebaseAuth.getInstance();
+        createAuthStateListener();
+        createAuthProgressDialog();
     }
 
     //Creates new User and moves to MainActivity
-    public void onClickSubmitUserInfo(View v) {
-        String newUserFirstNameInput  = newUserFirstNameField.getText().toString();
-        String newUserLastNameInput = newUserLastNameField.getText().toString();
-        String newUserUsernameInput = newUserUsernameField.getText().toString();
-        String newUserPasswordInput = newUserPasswordField.getText().toString();
-        int newUserWeight = 0;
-        if(!(newUserWeightField.getText().toString().equals(""))) {
-            newUserWeight  = Integer.parseInt(newUserWeightField.getText().toString());
-        }
-        String newUserHeight = newUserHeightField.getText().toString();
-        String newUserBirthDate = newUserBirthDateField.getText().toString();
+    public void createAccount(View v) {
+        name = mName.getText().toString().trim();
+        final String newName  = mName.getText().toString().trim();
+        final String newLastname = mLastname.getText().toString().trim();
+        final String newEmail = mEmail.getText().toString().trim();
+        final String newPassword = mPassword.getText().toString().trim();
+        final String confirmPassword = mConfirmPassword.getText().toString().trim();
+        final String newWeight = mWeight.getText().toString().trim();
+        final String newHeight = mHeight.getText().toString().trim();
+        final String newBirthdate = mBirth.getText().toString().trim();
+        final String newTargetWeight = mTargetWeight.getText().toString().trim();
+        boolean validName = isValidName(newName);
+        boolean validLast = isValidLastname(newLastname);
+        boolean validEmail = isValidEmail(newEmail);
+        boolean validPassword = isValidPassword(newPassword, confirmPassword);
+        boolean validWeight = isValidWeight(newWeight);
+        boolean validHeight = isValidHeight(newHeight);
+        boolean validBirth= isValidBirth(newBirthdate);
+        boolean validGender= isValidGender();
+        boolean validGoal= isValidGoal();
+        boolean validTargetWeight = isValidTargetWeight(newTargetWeight, newWeight);
 
-        int newUserTargetWeight = 0;
-        if(!(newUserTargetWeightField.getText().toString().equals(""))) {
-            newUserTargetWeight  = Integer.parseInt(newUserTargetWeightField.getText().toString());
-        }
-        //checks for all user inputs
-        if(
-                (newUserFirstNameInput.equals("")) ||
-                (!validatedPassword) ||
-                (genderSelected.equals("")) ||
-                (newUserLastNameInput.equals("")) ||
-                (newUserUsernameInput.equals("")) ||
-                (newUserPasswordInput.equals("")) ||
-                (newUserWeight == 0) ||
-                (newUserHeight.equals("")) ||
-                (newUserBirthDate.equals("")) ||
-                (newUserTargetWeight == 0) ||
-                (goalSelected.equals(""))) {
-            Toast.makeText(SignUpActivity.this, "Please provide information for all fields", Toast.LENGTH_SHORT).show();
-            Log.d("test", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
-        } else {
+        if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGender || !validGoal)
 
-            Log.d("success", newUserFirstNameInput + "-1- " + newUserLastNameInput + "--" + newUserUsernameInput + "--" + newUserPasswordInput + "--" + newUserWeight + "--" + newUserHeight + "--" + newUserBirthDate + "--" + newUserTargetWeight + "--" + goalSelected);
-            User newUser = new User(newUserFirstNameInput, newUserLastNameInput, newUserUsernameInput, newUserPasswordInput, newUserWeight, newUserHeight, newUserBirthDate, goalSelected, genderSelected, newUserTargetWeight);
+        mAuthProgressDialog.show();
 
-            Intent newIntent = new Intent(SignUpActivity.this, HomeActivity.class);
-            DatabaseReference userRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_USERS);
-            userRef.push().setValue(newUser);
-            startActivity(newIntent);
-        }
+        mAuth.createUserWithEmailAndPassword(newEmail, newPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Authentication successful");
+                            createFirebaseUserProfile(task.getResult().getUser());
+                            int intWeight = Integer.parseInt(newWeight);
+                            User newUser = new User(newName, newLastname, newEmail, newPassword, intWeight, newHeight, newBirthdate, goalSelected, genderSelected, userTargetWeight);
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
     //continue button switches viewflipper
     public void onClickContinue(View v) {
         if (v.getId() == (R.id.continueButton1)) {
-            String newUserGreeting = newUserFirstNameField.getText().toString();
+            String newUserGreeting = mName.getText().toString();
             Toast.makeText(SignUpActivity.this, "Welcome to VFit, " + newUserGreeting + ".", Toast.LENGTH_SHORT).show();
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.healthInfoView)));
         } else {
@@ -136,27 +140,157 @@ public class SignUpActivity extends AppCompatActivity implements TextWatcher {
             goalSelected = "Gain Weight";
         }
     }
-    @Override
-    public void afterTextChanged(Editable s) {
-        TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.inputLayout);
-        String newUserPasswordInput = newUserPasswordField.getText().toString();
-        String confirmPassword = confirmPasswordField.getText().toString();
-        if (newUserPasswordInput.equals(confirmPassword)) {
-            validatedPassword = true;
-            inputLayout.setError(null);//Clears new password validator flag
-        } else {
-            validatedPassword = false;
-            inputLayout.setError("Passwords do not match");//Shows error when new password validation doesn't match
+
+//    user input validations
+    private boolean isValidEmail(String email) {
+        boolean isGoodEmail =
+                (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if (!isGoodEmail) {
+            mEmail.setError("Please enter a valid email address");
+            return false;
         }
+        return isGoodEmail;
+    }
+
+    private boolean isValidName(String nameField) {
+        if (nameField.equals("")) {
+            mName.setError("Please enter your name");
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidLastname(String lastname) {
+        if (lastname.equals("")) {
+            mLastname.setError("Please enter your last name");
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidWeight(String weight) {
+        if (weight.equals("")) {
+            mLastname.setError("Please enter your weight");
+            return false;
+        }
+        int intWeight = Integer.parseInt(weight);
+        if (intWeight <= 0) {
+            mWeight.setError("Please a weight greater than 0");
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidHeight(String height) {
+        if (height.equals("")) {
+            mHeight.setError("Please enter your height");
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidBirth(String birth) {
+        if (birth.equals("")) {
+            mBirth.setError("Please enter your birthdate");
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidGender() {
+        if (genderSelected.equals("")) {
+            Toast.makeText(this, "Please enter a gender", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean isValidGoal() {
+        if (goalSelected.equals("")) {
+            Toast.makeText(this, "Please enter a goal", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidTargetWeight(String targetWeight, String weight) {
+        if (weight.equals("")) return false;
+        if (genderSelected.equals("")) return false;
+        if (goalSelected.equals("")) return false;
+        if (goalSelected.equals("Maintain Weight")) {
+            userTargetWeight = Integer.parseInt(weight);
+            return true;
+        }
+        if (targetWeight.equals("")) return false;
+        int intTarget = Integer.parseInt(targetWeight);
+        if (intTarget <= 0) {
+            mWeight.setError("Please a target weight greater than 0");
+            return false;
+        }
+        return true;
+    }
+
+
+    private boolean isValidPassword(String password, String confirmPassword) {
+        if (password.length() < 6) {
+            mPassword.setError("Please create a password containing at least 6 characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            mPassword.setError("Passwords do not match");
+            return false;
+        }
+        return true;
+    }
+
+
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Authenticating with Firebase...");
+        mAuthProgressDialog.setCancelable(false);
+    }
+
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, user.getDisplayName());
+                        }
+                    }
+
+                });
+    }
+
+    private void createAuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+        };
     }
 
     @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

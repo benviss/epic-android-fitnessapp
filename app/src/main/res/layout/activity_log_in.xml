@@ -13,9 +13,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/email"
         android:layout_marginBottom="29dp"
-        android:hint="Username"
+        android:hint="Email"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@color/colorPrimaryLight"
@@ -25,27 +25,15 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:hint="Password"
         android:inputType="textPassword"
         android:background="@color/colorPrimaryLight"
         android:minWidth="250dp"
         android:textAlignment="center"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log In"
-        android:id="@+id/logInButton"
-        android:minWidth="250dp"
-        android:background="@color/colorAccent"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="27dp" />
+        android:layout_below="@+id/email"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,5 +65,17 @@
         android:id="@+id/aboutMeTextView"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:id="@+id/logInButton"
+        android:minWidth="250dp"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password" />
 
 </RelativeLayout>
