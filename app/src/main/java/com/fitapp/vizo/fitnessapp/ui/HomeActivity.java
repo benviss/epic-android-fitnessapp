@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -74,7 +73,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Button muscleNameButton = (Button) v;
         String muscleName = muscleNameButton.getText().toString();
-        saveMuscleSelected(muscleName);
+        mEditor.putString(Constants.PREFERENCES_MUSCLE_KEY, muscleName).apply();
         String muscleSelected = v.getResources().getResourceEntryName(v.getId());
         String muscleNumber = muscleSelected.substring(6);
         Intent exerciseListIntent = new Intent(HomeActivity.this, ExerciseListActivity.class);
@@ -82,11 +81,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(exerciseListIntent);
     }
 
-    public void saveMuscleSelected(String muscle) {
-        mEditor.putString(Constants.PREFERENCES_MUSCLE_KEY, muscle).apply();
-        String text = mSharedPreferences.getString(Constants.PREFERENCES_MUSCLE_KEY, null);
-        Log.d("test", text);
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

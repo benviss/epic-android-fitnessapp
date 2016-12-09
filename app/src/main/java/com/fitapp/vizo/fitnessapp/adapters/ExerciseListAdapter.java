@@ -16,7 +16,6 @@ import com.fitapp.vizo.fitnessapp.models.Exercise;
 import com.fitapp.vizo.fitnessapp.ui.ExerciseDetailActivity;
 
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -29,11 +28,13 @@ import butterknife.ButterKnife;
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>{
 
     private ArrayList<Exercise> mExercises = new ArrayList<>();
+    private ArrayList<Exercise> mExercisesCopy = new ArrayList<>();
     private Context mContext;
 
     public ExerciseListAdapter(Context context, ArrayList<Exercise> exercises) {
         mContext = context;
         mExercises = exercises;
+        mExercisesCopy.addAll(exercises);
     }
 
     @Override
@@ -82,5 +83,20 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
             intent.putExtra("exercises", Parcels.wrap(mExercises));
             mContext.startActivity(intent);
         }
+    }
+
+    public void filter(String text) {
+        mExercises.clear();
+        if(text.isEmpty()){
+            mExercises.addAll(mExercisesCopy);
+        } else{
+            text = text.toLowerCase();
+            for(Exercise exercise: mExercisesCopy){
+                if(exercise.getName().toLowerCase().contains(text)){
+                    mExercises.add(exercise);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
