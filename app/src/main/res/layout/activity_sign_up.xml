@@ -18,6 +18,124 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/healthInfoView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Please Provide Health Details"
+            android:id="@+id/viewTitleHealth"
+            android:background="@color/colorPrimaryDark"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryLight"
+            android:layout_marginTop="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userHeight"
+            android:hint="Height: Feet"
+            android:nextFocusDown="@+id/userWeightInput"
+            android:layout_below="@+id/userWeightInput"
+            android:layout_alignLeft="@+id/viewTitleHealth"
+            android:layout_alignStart="@+id/viewTitleHealth"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userWeightInput"
+            android:nextFocusDown="@+id/userBirthInput"
+            android:hint="Enter Weight"
+            android:layout_below="@+id/viewTitleHealth"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="129dp"
+            android:inputType="number" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userBirthInput"
+            android:hint="Enter Birthdate"
+            android:inputType="date"
+            android:layout_below="@+id/userHeight"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Back"
+            android:id="@+id/backButton1"
+            android:background="@color/colorAccent"
+            android:minWidth="100dp"
+            android:onClick="onClickBack"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="Continue"
+            android:id="@+id/continueButton2"
+            android:background="@color/colorAccent"
+            android:minWidth="100dp"
+            android:onClick="onClickContinue"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/linearLayout"
+            android:layout_below="@+id/viewTitleHealth"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="60dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:id="@+id/userGenderMaleRadio"
+                android:checked="false"
+                android:paddingRight="20dp"
+                android:onClick="onClickGenderSet" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:id="@+id/userGenderFemaleRadio"
+                android:checked="false"
+                android:onClick="onClickGenderSet" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userIncheskaka"
+            android:hint="Height: Inches"
+            android:nextFocusDown="@+id/userWeightInput"
+            android:layout_below="@+id/userWeightInput"
+            android:layout_toRightOf="@+id/userHeight"
+            android:layout_toEndOf="@+id/userHeight" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:id="@+id/contactInfoView">
         <EditText
@@ -26,6 +144,7 @@
             android:id="@+id/newUserFirstName"
             android:layout_marginTop="121dp"
             android:hint="First Name"
+            android:nextFocusDown="@+id/newUserLastName"
             android:inputType="text"
             android:text=""
             android:layout_alignParentTop="true"
@@ -36,6 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/newUserLastName"
+            android:nextFocusDown="@+id/newEmail"
             android:hint="Last Name"
             android:inputType="text"
             android:text=""
@@ -48,6 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/newEmail"
+            android:nextFocusDown="@+id/newUserPassword"
             android:hint="Email"
             android:inputType="text"
             android:text=""
@@ -61,6 +182,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/newUserPassword"
             android:hint="New Password"
+            android:nextFocusDown="@+id/confirmPassword"
             android:inputType="textPassword"
             android:minWidth="175dp"
             android:textAlignment="center"
@@ -176,7 +298,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MaintainWeight"
-                android:id="@+id/radioButton2"
+                android:id="@+id/maintainWeight"
                 android:layout_gravity="center_horizontal"
                 android:checked="false"
                 android:onClick="onClickUserGoal" />
@@ -207,108 +329,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/healthInfoView">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Please Provide Health Details"
-            android:id="@+id/viewTitleHealth"
-            android:background="@color/colorPrimaryDark"
-            android:padding="5dp"
-            android:textColor="@color/colorPrimaryLight"
-            android:layout_marginTop="36dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userHeightInput"
-            android:hint="Enter Height"
-            android:layout_below="@+id/userWeightInput"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userWeightInput"
-            android:hint="Enter Weight"
-            android:layout_below="@+id/viewTitleHealth"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="129dp"
-            android:inputType="number" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userBirthInput"
-            android:hint="Enter Birthdate"
-            android:inputType="date"
-            android:layout_below="@+id/userHeightInput"
-            android:layout_centerHorizontal="true" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Back"
-            android:id="@+id/backButton1"
-            android:background="@color/colorAccent"
-            android:minWidth="100dp"
-            android:onClick="onClickBack"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:text="Continue"
-            android:id="@+id/continueButton2"
-            android:background="@color/colorAccent"
-            android:minWidth="100dp"
-            android:onClick="onClickContinue"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:id="@+id/linearLayout"
-            android:layout_below="@+id/viewTitleHealth"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="60dp">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                android:id="@+id/userGenderMaleRadio"
-                android:checked="false"
-                android:paddingRight="20dp"
-                android:onClick="onClickGenderSet" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
-                android:id="@+id/userGenderFemaleRadio"
-                android:checked="false"
-                android:onClick="onClickGenderSet" />
-        </LinearLayout>
 
     </RelativeLayout>
 

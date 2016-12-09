@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -35,9 +36,14 @@ public class SignUpActivity extends AppCompatActivity  {
     @Bind(R.id.newUserPassword) EditText mPassword;
     @Bind(R.id.confirmPassword) EditText mConfirmPassword;
     @Bind(R.id.userWeightInput) EditText mWeight;
-    @Bind(R.id.userHeightInput) EditText mHeight;
+    @Bind(R.id.userHeight) EditText mHeight;
     @Bind(R.id.userBirthInput) EditText mBirth;
     @Bind(R.id.userTargetWeight) EditText mTargetWeight;
+    @Bind(R.id.userGenderFemaleRadio) RadioButton mFemaleRadio;
+    @Bind(R.id.userGenderMaleRadio) RadioButton mMaleRadio;
+    @Bind(R.id.loseWeight) RadioButton mLoseWeight;
+    @Bind(R.id.gainWeight) RadioButton mGainWeight;
+    @Bind(R.id.maintainWeight) RadioButton mMaintainWeight;
 
     private FirebaseAuth mAuth;
     private ProgressDialog mAuthProgressDialog;
@@ -64,6 +70,13 @@ public class SignUpActivity extends AppCompatActivity  {
         createAuthProgressDialog();
     }
 
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Authenticating with Firebase...");
+        mAuthProgressDialog.setCancelable(false);
+    }
+
     //Creates new User and moves to MainActivity
     public void createAccount(View v) {
         name = mName.getText().toString().trim();
@@ -84,10 +97,10 @@ public class SignUpActivity extends AppCompatActivity  {
         boolean validHeight = isValidHeight(newHeight);
         boolean validBirth= isValidBirth(newBirthdate);
         boolean validGender= isValidGender();
-        boolean validGoal= isValidGoal();
+        boolean validGoal= true;
         boolean validTargetWeight = isValidTargetWeight(newTargetWeight, newWeight);
 
-        if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGender || !validGoal)
+        if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGender || !validGoal) return;
 
         mAuthProgressDialog.show();
 
@@ -131,20 +144,28 @@ public class SignUpActivity extends AppCompatActivity  {
     }
     //records radio button changes
     public void onClickGenderSet(View v){
-        if(v.getId() == (R.id.userGenderMaleRadio)) {
+        if(v.getId() == (mMaleRadio.getId())) {
+            mFemaleRadio.setChecked(false);
             genderSelected = "Male";
         } else {
+            mMaleRadio.setChecked(false);
             genderSelected = "Female";
         }
     }
     //records radio button to change
     public void onClickUserGoal(View v){
-        if(v.getId() == (R.id.loseWeight)) {
+        if(v.getId() == (mLoseWeight.getId())) {
+            mGainWeight.setChecked(false);
+            mMaintainWeight.setChecked(false);
             goalSelected = "Lose Weight";
-        } else if(v.getId() == (R.id.loseWeight)){
+        } else if(v.getId() == (mMaintainWeight.getId())){
             goalSelected = "Maintain Weight";
+            mLoseWeight.setChecked(false);
+            mGainWeight.setChecked(false);
         } else {
             goalSelected = "Gain Weight";
+            mLoseWeight.setChecked(false);
+            mMaintainWeight.setChecked(false);
         }
     }
 
@@ -243,13 +264,6 @@ public class SignUpActivity extends AppCompatActivity  {
         return true;
     }
 
-
-    private void createAuthProgressDialog() {
-        mAuthProgressDialog = new ProgressDialog(this);
-        mAuthProgressDialog.setTitle("Loading...");
-        mAuthProgressDialog.setMessage("Authenticating with Firebase...");
-        mAuthProgressDialog.setCancelable(false);
-    }
 
     private void createFirebaseUserProfile(final FirebaseUser user) {
 
