@@ -1,13 +1,15 @@
 package com.fitapp.vizo.fitnessapp.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.adapters.ExerciseListAdapter;
@@ -15,7 +17,6 @@ import com.fitapp.vizo.fitnessapp.models.Exercise;
 import com.fitapp.vizo.fitnessapp.services.WgerCallService;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -44,6 +45,38 @@ public class ExerciseListActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        ButterKnife.bind(this);
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mAdapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.filter(newText);
+                return true;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
     private void getExercises(String muscleSelected) {
         final WgerCallService wgerCallService = new WgerCallService();
         wgerCallService.findExercises(muscleSelected, new Callback() {
@@ -60,7 +93,6 @@ public class ExerciseListActivity extends AppCompatActivity {
                 ExerciseListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("test", mExercises.get(0).getName());
                         mAdapter = new ExerciseListAdapter(getApplicationContext(), mExercises);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ExerciseListActivity.this);
