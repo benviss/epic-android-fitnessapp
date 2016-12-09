@@ -10,6 +10,8 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.adapters.ExerciseListAdapter;
@@ -31,6 +33,8 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private ExerciseListAdapter mAdapter;
+    @Bind(R.id.spinnyBar)
+    ProgressBar progressBar;
 
 
     @Override
@@ -93,6 +97,7 @@ public class ExerciseListActivity extends AppCompatActivity {
                 ExerciseListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressBar.setVisibility(View.GONE);
                         mAdapter = new ExerciseListAdapter(getApplicationContext(), mExercises);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ExerciseListActivity.this);
