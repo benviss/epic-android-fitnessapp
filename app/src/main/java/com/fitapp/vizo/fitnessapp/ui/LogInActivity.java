@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     @Bind(R.id.signUpUser) TextView mSignUpUser;
     @Bind(R.id.logInButton) Button mLogInButton;
     @Bind(R.id.aboutMeTextView) TextView mAboutMeTextView;
+    @Bind(R.id.imageView) ImageView mImageView; //for development purposes
     @Bind(R.id.email) EditText mEmailEditText;
     @Bind(R.id.password) EditText mPasswordEditText;
     private FirebaseAuth mAuth;
@@ -44,6 +46,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         mLogInButton.setOnClickListener(this);
         mSignUpUser.setOnClickListener(this);
         mAboutMeTextView.setOnClickListener(this);
+        mImageView.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         createAuthProgressDialog();
@@ -73,6 +76,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         } else if (v == mAboutMeTextView) {
             Intent githubIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/benviss"));
             startActivity(githubIntent);
+        } else if (v == mImageView) {
+            //TODO  for development purposes only
+            Intent cheat = new Intent(LogInActivity.this, HomeActivity.class);
+            startActivity(cheat);
         }
     }
     private void loginWithPassword() {

@@ -64,15 +64,6 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        String setReps = setRepsField.getText().toString();
-        String setWeight = setWeightField.getText().toString();
-        int reps = 0;
-        int weight = 0;
-        if (!setReps.equals("")) {
-            if (!setWeight.equals("")) {
-                weight = Integer.parseInt(setWeight);
-            }
-            reps = Integer.parseInt(setReps);
-        }
+
     }
 }
