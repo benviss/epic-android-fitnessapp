@@ -1,9 +1,5 @@
 package com.fitapp.vizo.fitnessapp;
 
-import android.os.Build;
-
-import com.fitapp.vizo.fitnessapp.BuildConfig;
-
 /**
  * Created by Guest on 12/1/16.
  */
@@ -16,4 +12,5 @@ public class Constants {
     public static final String LOCAL_SETS_SAVED= "sets";
 
     public static final String FIREBASE_CHILD_USERS= "users";
+    public static final String FIREBASE_CHILD_EXERCISES= "exercises";
 }

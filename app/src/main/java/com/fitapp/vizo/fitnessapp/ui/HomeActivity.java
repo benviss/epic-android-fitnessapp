@@ -96,6 +96,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             logout();
             return true;
         }
+        if (id == R.id.action_saved_exercises) {
+            Intent intent = new Intent(HomeActivity.this, SavedExerciseListActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

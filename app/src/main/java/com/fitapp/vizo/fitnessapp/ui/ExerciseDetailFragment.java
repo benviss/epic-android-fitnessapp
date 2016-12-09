@@ -3,29 +3,36 @@ package com.fitapp.vizo.fitnessapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class ExerciseDetailFragment extends Fragment implements View.OnClickListener{
     @Bind(R.id.setWeight) EditText setWeightField;
     @Bind(R.id.setReps) EditText setRepsField;
     @Bind(R.id.addSetButton) Button addSetButton;
+    @Bind(R.id.favoriteStar)
+    ImageView favoriteStar;
+
     @Bind(R.id.exerciseNameTextView) TextView mExerciseNameTextView;
     @Bind(R.id.primaryMuscleTextView) TextView mPrimaryMuscleTextView;
     @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
@@ -59,11 +66,28 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
         mSecondaryMuscleTextView.setText("Secondary Muscle Changed");
         mDescriptionTextView.setText(mExercise.getDescription());
         addSetButton.setOnClickListener(this);
+        favoriteStar.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == favoriteStar.getId()) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
 
+            DatabaseReference exerciseRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_EXERCISES)
+                    .child(uid);
+
+            DatabaseReference pushRef = exerciseRef.push();
+            String pushId = pushRef.getKey();
+            mExercise.setPushId(pushId);
+            pushRef.setValue(mExercise);
+
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            v.setActivated(true);
+        }
     }
 }

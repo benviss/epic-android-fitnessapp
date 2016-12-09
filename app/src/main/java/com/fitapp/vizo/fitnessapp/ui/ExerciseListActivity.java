@@ -52,7 +52,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_search, menu);
         ButterKnife.bind(this);
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
