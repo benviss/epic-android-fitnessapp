@@ -37,13 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/userHeight"
-            android:hint="Height: Feet"
+            android:hint="Enter Height"
             android:nextFocusDown="@+id/userWeightInput"
             android:layout_below="@+id/userWeightInput"
-            android:layout_alignLeft="@+id/viewTitleHealth"
-            android:layout_alignStart="@+id/viewTitleHealth"
-            android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp" />
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -119,16 +116,6 @@
                 android:checked="false"
                 android:onClick="onClickGenderSet" />
         </LinearLayout>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/userIncheskaka"
-            android:hint="Height: Inches"
-            android:nextFocusDown="@+id/userWeightInput"
-            android:layout_below="@+id/userWeightInput"
-            android:layout_toRightOf="@+id/userHeight"
-            android:layout_toEndOf="@+id/userHeight" />
 
 
     </RelativeLayout>
