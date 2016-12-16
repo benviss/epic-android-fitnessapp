@@ -49,7 +49,6 @@ public class SignUpActivity extends AppCompatActivity  {
     private String name;
 
     ViewFlipper viewflipper;
-    private String genderSelected = "";
     private String goalSelected = "";
     private int userTargetWeight = 0;
     private boolean validatedPassword = false;
@@ -94,11 +93,10 @@ public class SignUpActivity extends AppCompatActivity  {
         boolean validWeight = isValidWeight(newWeight);
         boolean validHeight = isValidHeight(newHeight);
         boolean validBirth= isValidBirth(newBirthdate);
-        boolean validGoal= true;
+        boolean validGoal= isValidGoal();
         boolean validTargetWeight = isValidTargetWeight(newTargetWeight, newWeight);
 
         if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGoal) return;
-
         mAuthProgressDialog.show();
 
         mAuth.createUserWithEmailAndPassword(newEmail, newPassword)
@@ -109,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity  {
                             Log.d(TAG, "Authentication successful");
                             createFirebaseUserProfile(task.getResult().getUser());
                             int intWeight = Integer.parseInt(newWeight);
-                            User newUser = new User(newName, newLastname, newEmail, newPassword, intWeight, newHeight, newBirthdate, goalSelected, genderSelected, userTargetWeight);
+                            User newUser = new User(newName, newLastname, newEmail, newPassword, intWeight, newHeight, newBirthdate, goalSelected, userTargetWeight);
                             DatabaseReference userRef = FirebaseDatabase
                                     .getInstance()
                                     .getReference(Constants.FIREBASE_CHILD_USERS);
@@ -217,7 +215,6 @@ public class SignUpActivity extends AppCompatActivity  {
 
     private boolean isValidTargetWeight(String targetWeight, String weight) {
         if (weight.equals("")) return false;
-        if (genderSelected.equals("")) return false;
         if (goalSelected.equals("")) return false;
         if (goalSelected.equals("Maintain Weight")) {
             userTargetWeight = Integer.parseInt(weight);

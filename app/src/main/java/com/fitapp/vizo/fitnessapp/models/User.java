@@ -15,7 +15,7 @@ public class User{
     private int targetWeight;
 
 
-    public User(String newFirstName, String newUserLastNameInput, String newUserUsernameInput, String newUserPasswordInput, int newUserWeight, String newUserHeight,String  newUserBirthDate, String newUserGoal, String newUserGender, int newUserTargetWeight)
+    public User(String newFirstName, String newUserLastNameInput, String newUserUsernameInput, String newUserPasswordInput, int newUserWeight, String newUserHeight,String  newUserBirthDate, String newUserGoal, int newUserTargetWeight)
     {
         this.firstName = newFirstName;
         this.lastName = newUserLastNameInput;

@@ -12,6 +12,7 @@ public class Exercise {
     private ArrayList<Integer> secondaryMuscles;
     private ArrayList<Integer> equipment;
     private int category;
+    String index;
 
     public String getPushId() {
         return pushId;
@@ -33,6 +34,7 @@ public class Exercise {
         this.secondaryMuscles = secondaryMuscles;
         this.equipment = equipment;
         this.category = category;
+        this.index = "not_specified";
     }
 
     public int getId() {
@@ -89,5 +91,13 @@ public class Exercise {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

@@ -30,7 +30,6 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity android:name=".ui.ExerciseListActivity" />
         <activity android:name=".ui.ExerciseDetailActivity" />
-        <activity android:name=".ui.SavedExercisesActivity" />
         <activity android:name=".ui.SavedExerciseListActivity" />
     </application>
 

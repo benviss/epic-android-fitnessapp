@@ -3,6 +3,7 @@ package com.fitapp.vizo.fitnessapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,6 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exercise_detail, container, false);
         ButterKnife.bind(this, view);
-
         mExerciseNameTextView.setText(mExercise.getName());
         String primaryMuscles = WgerConversions.convertMuscles(mExercise.getMuscles());
         String secondaryMuscles = WgerConversions.convertMuscles(mExercise.getSecondaryMuscles());
