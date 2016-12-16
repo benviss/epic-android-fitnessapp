@@ -1,8 +1,5 @@
 package com.fitapp.vizo.fitnessapp.models;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 /**
  * Created by Guest on 11/18/16.
  */
@@ -14,7 +11,6 @@ public class User{
     private int weight;
     private String height;
     private String birthdate;
-    private String gender;
     private String goal;
     private int targetWeight;
 
@@ -27,7 +23,6 @@ public class User{
         this.password = newUserPasswordInput;
         this.weight = newUserWeight;
         this.height = newUserHeight;
-        this.gender = newUserGender;
         this.goal = newUserGoal;
         this.targetWeight = newUserTargetWeight;
         this.birthdate = newUserBirthDate;
@@ -51,9 +46,7 @@ public class User{
     public String getBirthdate() {
         return this.birthdate;
     }
-    public String getGender() {
-        return this.gender;
-    }
+
     public String getGoal() {
         return this.goal;
     }

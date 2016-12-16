@@ -98,23 +98,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="60dp">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                android:id="@+id/userGenderMaleRadio"
-                android:checked="false"
-                android:paddingRight="20dp"
-                android:onClick="onClickGenderSet" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
-                android:id="@+id/userGenderFemaleRadio"
-                android:checked="false"
-                android:onClick="onClickGenderSet" />
         </LinearLayout>
 
 

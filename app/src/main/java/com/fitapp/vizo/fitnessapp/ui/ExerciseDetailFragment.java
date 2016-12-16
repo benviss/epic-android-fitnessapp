@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
+import com.fitapp.vizo.fitnessapp.services.WgerConversions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -62,8 +63,10 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
         ButterKnife.bind(this, view);
 
         mExerciseNameTextView.setText(mExercise.getName());
-        mPrimaryMuscleTextView.setText("Primary Muscle Changed");
-        mSecondaryMuscleTextView.setText("Secondary Muscle Changed");
+        String primaryMuscles = WgerConversions.convertMuscles(mExercise.getMuscles());
+        String secondaryMuscles = WgerConversions.convertMuscles(mExercise.getSecondaryMuscles());
+        mPrimaryMuscleTextView.setText(primaryMuscles);
+        mSecondaryMuscleTextView.setText("Secondary Muscles: " + secondaryMuscles);
         mDescriptionTextView.setText(mExercise.getDescription());
         addSetButton.setOnClickListener(this);
         favoriteStar.setOnClickListener(this);

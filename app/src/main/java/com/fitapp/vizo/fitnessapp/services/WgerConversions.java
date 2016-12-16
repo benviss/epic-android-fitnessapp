@@ -1,5 +1,10 @@
 package com.fitapp.vizo.fitnessapp.services;
 
+import com.fitapp.vizo.fitnessapp.models.Exercise;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Guest on 12/9/16.
  */
@@ -34,5 +39,19 @@ public class WgerConversions {
         if (equipment == 9) return "Incline bench";
         if (equipment == 5) return "Swiss Ball";
         return "Equipment Not Found";
+    }
+
+    public static String convertMuscles(ArrayList<Integer> selectedMuscles) {
+        if (selectedMuscles == null || selectedMuscles.size() == 0) return "None";
+        String[] mSelectedMuscles = new String [selectedMuscles.size()];
+        int index = 0;
+        for (int muscle: selectedMuscles) {
+            String selectedMuscle = toMuscleString(muscle);
+            mSelectedMuscles[index] = selectedMuscle;
+            index++;
+        }
+        String result = Arrays.toString(mSelectedMuscles);
+        result = result.substring(1, result.length() - 1);
+        return result;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,13 @@ import android.widget.TextView;
 import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
+import com.fitapp.vizo.fitnessapp.services.WgerConversions;
 import com.fitapp.vizo.fitnessapp.ui.ExerciseDetailActivity;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +29,6 @@ import butterknife.ButterKnife;
  * Created by Guest on 12/2/16.
  */
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>{
-
     private ArrayList<Exercise> mExercises = new ArrayList<>();
     private ArrayList<Exercise> mExercisesCopy = new ArrayList<>();
     private Context mContext;
@@ -73,7 +75,9 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
 
         public void bindExercise(Exercise exercise) {
             mExerciseTextView.setText(exercise.getName());
-            mPrimaryMuscleTextView.setText(mSelectedMuscle);
+
+            String mSelectedMuscles = WgerConversions.convertMuscles(exercise.getMuscles());
+            mPrimaryMuscleTextView.setText(mSelectedMuscles);
         }
         @Override
         public void onClick(View v) {
@@ -99,4 +103,5 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         }
         notifyDataSetChanged();
     }
+
 }

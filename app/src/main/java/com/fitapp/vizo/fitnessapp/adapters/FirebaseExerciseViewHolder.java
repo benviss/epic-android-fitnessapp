@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.fitapp.vizo.fitnessapp.Constants;
 import com.fitapp.vizo.fitnessapp.R;
 import com.fitapp.vizo.fitnessapp.models.Exercise;
+import com.fitapp.vizo.fitnessapp.services.WgerConversions;
 import com.fitapp.vizo.fitnessapp.ui.ExerciseDetailActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +42,7 @@ public class FirebaseExerciseViewHolder extends RecyclerView.ViewHolder implemen
         TextView muscleTextView = (TextView) mView.findViewById(R.id.primaryMuscleTextView);
 
         nameTextView.setText(exercise.getName());
-        muscleTextView.setText(exercise.getMuscles().toString());
+        muscleTextView.setText(WgerConversions.convertMuscles(exercise.getMuscles()));
     }
 
     @Override

@@ -39,8 +39,6 @@ public class SignUpActivity extends AppCompatActivity  {
     @Bind(R.id.userHeight) EditText mHeight;
     @Bind(R.id.userBirthInput) EditText mBirth;
     @Bind(R.id.userTargetWeight) EditText mTargetWeight;
-    @Bind(R.id.userGenderFemaleRadio) RadioButton mFemaleRadio;
-    @Bind(R.id.userGenderMaleRadio) RadioButton mMaleRadio;
     @Bind(R.id.loseWeight) RadioButton mLoseWeight;
     @Bind(R.id.gainWeight) RadioButton mGainWeight;
     @Bind(R.id.maintainWeight) RadioButton mMaintainWeight;
@@ -96,11 +94,10 @@ public class SignUpActivity extends AppCompatActivity  {
         boolean validWeight = isValidWeight(newWeight);
         boolean validHeight = isValidHeight(newHeight);
         boolean validBirth= isValidBirth(newBirthdate);
-        boolean validGender= isValidGender();
         boolean validGoal= true;
         boolean validTargetWeight = isValidTargetWeight(newTargetWeight, newWeight);
 
-        if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGender || !validGoal) return;
+        if (!validTargetWeight || !validName || !validLast || !validEmail || !validPassword || !validWeight || !validHeight || !validBirth || !validGoal) return;
 
         mAuthProgressDialog.show();
 
@@ -140,16 +137,6 @@ public class SignUpActivity extends AppCompatActivity  {
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
         } else {
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.healthInfoView)));
-        }
-    }
-    //records radio button changes
-    public void onClickGenderSet(View v){
-        if(v.getId() == (mMaleRadio.getId())) {
-            mFemaleRadio.setChecked(false);
-            genderSelected = "Male";
-        } else {
-            mMaleRadio.setChecked(false);
-            genderSelected = "Female";
         }
     }
     //records radio button to change
@@ -216,13 +203,6 @@ public class SignUpActivity extends AppCompatActivity  {
     private boolean isValidBirth(String birth) {
         if (birth.equals("")) {
             mBirth.setError("Please enter your birthdate");
-            return false;
-        }
-        return true;
-    }
-    private boolean isValidGender() {
-        if (genderSelected.equals("")) {
-            Toast.makeText(this, "Please enter a gender", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
