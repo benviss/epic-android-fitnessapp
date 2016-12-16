@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.fitapp.vizo.fitnessapp.ui.LogInActivity"
+    android:background="@color/colorPrimaryDark">
+
+
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/logo"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:hint="Email"
+            android:background="@color/colorPrimaryLight"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp" />
+        <EditText
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@color/colorPrimaryLight"
+            android:minWidth="100dp"
+            android:textAlignment="center"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="false"
+            android:layout_marginRight="10dp" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:id="@+id/logInButton"
+        android:minWidth="250dp"
+        android:background="@color/colorAccent"
+        android:layout_below="@+id/password"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/signUp"
+            android:id="@+id/signUpUser"
+            android:textColor="@color/colorIcons"
+            android:clickable="true"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Learn About the Developer"
+            android:id="@+id/aboutMeTextView"
+            android:layout_gravity="right"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="15dp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

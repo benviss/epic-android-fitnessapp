@@ -121,6 +121,8 @@ public class SignUpActivity extends AppCompatActivity  {
     }
     //continue button switches viewflipper
     public void onClickContinue(View v) {
+        viewflipper.setInAnimation(this, R.anim.in_from_right);
+        viewflipper.setOutAnimation(this, R.anim.out_to_left);
         if (v.getId() == (R.id.continueButton1)) {
             String newUserGreeting = mName.getText().toString();
             Toast.makeText(SignUpActivity.this, "Welcome to VFit, " + newUserGreeting + ".", Toast.LENGTH_SHORT).show();
@@ -131,6 +133,8 @@ public class SignUpActivity extends AppCompatActivity  {
     }
 
     public void onClickBack(View v) {
+        viewflipper.setInAnimation(this, R.anim.in_from_left);
+        viewflipper.setOutAnimation(this, R.anim.out_to_right);
         if (v.getId() == (R.id.backButton1)) {
             viewflipper.setDisplayedChild(viewflipper.indexOfChild(findViewById(R.id.contactInfoView)));
         } else {
