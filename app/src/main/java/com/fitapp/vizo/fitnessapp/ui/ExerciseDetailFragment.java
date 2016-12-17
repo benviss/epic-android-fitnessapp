@@ -3,7 +3,6 @@ package com.fitapp.vizo.fitnessapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +31,7 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
     @Bind(R.id.setWeight) EditText setWeightField;
     @Bind(R.id.setReps) EditText setRepsField;
     @Bind(R.id.addSetButton) Button addSetButton;
+    @Bind(R.id.logWorkoutButton) Button logWorkOutButton;
     @Bind(R.id.favoriteStar)
     ImageView favoriteStar;
 
@@ -56,7 +56,6 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
         mExercise = Parcels.unwrap(getArguments().getParcelable("exercise"));
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
         mSecondaryMuscleTextView.setText("Secondary Muscles: " + secondaryMuscles);
         mDescriptionTextView.setText(mExercise.getDescription());
         addSetButton.setOnClickListener(this);
+        logWorkOutButton.setOnClickListener(this);
         favoriteStar.setOnClickListener(this);
         return view;
     }
@@ -91,6 +91,9 @@ public class ExerciseDetailFragment extends Fragment implements View.OnClickList
 
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
             v.setActivated(true);
+        }
+        else  {
+            Toast.makeText(getContext(), "Under Construction", Toast.LENGTH_SHORT).show();
         }
     }
 }
